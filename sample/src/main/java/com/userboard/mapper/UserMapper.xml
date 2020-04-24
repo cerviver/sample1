@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.userboard.mapper.UserMapper">
+	<!-- 
+	user_no	INT	NOT NULL AUTO_INCREMENT,
+	user_id	VARCHAR(50)	NOT NULL,
+	user_password	VARCHAR(100) NOT NULL,
+	user_name	VARCHAR(30) NOT NULL,
+	user_email	VARCHAR(50) NOT NULL,
+	user_address	VARCHAR(1000) NOT NULL,
+	user_phone	VARCHAR(50) NOT NULL,
+	user_date	DATETIME NOT NULL,
+	user_grade	INT
+	 -->
+	 
+	
+	<!-- 회원가입 -->
+	<insert id="insertUser">
+		insert into user (
+		user_id,
+		user_password,
+		user_name,
+		user_email,
+		user_address,
+		user_phone,
+		user_grade
+		) values (
+			#{userId},
+			#{userPassword},
+			#{userName},
+			#{userEmail},
+			#{userAddress},
+			#{userPhone},
+			1
+		)
+	</insert>
+</mapper>
