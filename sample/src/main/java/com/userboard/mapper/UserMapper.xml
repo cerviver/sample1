@@ -12,7 +12,9 @@
 	user_date	DATETIME NOT NULL,
 	user_grade	INT
 	 -->
-	 
+	
+	<!-- 가입절차 -->
+	
 	<!-- 회원가입 -->
 	<insert id="insertUser">
 		insert into user (
