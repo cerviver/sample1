@@ -13,7 +13,6 @@
 	user_grade	INT
 	 -->
 	
-	
 	<!-- 회원가입 -->
 	<insert id="insertUser">
 		insert into user (
@@ -34,4 +33,39 @@
 			1
 		)
 	</insert>
+	
+	<!-- 회원 전체 리스트 -->
+	<select id="selectAllUser" resultType="User">
+		select * from user order by user_no desc
+	</select>
+	
+	<!-- 회원 한명 선택 -->
+	<select id="selectUser" resultType="User">
+		select * from user where user_id=#{userId}
+	</select>
+	
+	<!-- 회원정보 변경 -->
+	<update id="updateUser">
+		update user set
+			<if test="userPassword!=null and userPassword!=''">
+				user_password=#{userPassword},
+			</if>
+			user_name = #{userName},
+			user_email = #{userEmail},
+			user_address = #{userEmail},
+			user_phone = #{userPhone}
+		where user_id=#{userId}
+	</update>
+	
+	<!-- 회원등급 변경 -->
+	<update id="updateUserGrade">
+		update user set
+			user_grade = 9
+		where user_id=#{userId}
+	</update>
+	
+	<delete id="deleteUser">
+		delete from user where user_id=#{userId}
+	</delete>
+	
 </mapper>

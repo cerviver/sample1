@@ -78,18 +78,19 @@ span.psw {
 </style>
 </head>
 <body>
-	<form action="action_page.php" method="post">
+	<p style="color: red;">${message } </p>
+	<form action="login" method="post">
 	  <div class="container">
 	    <label for="uname"><b>I D</b></label>
-	    <input type="text" name="uname" id="userId" required>
+	    <input type="text" name="userId" required>
 	
 	    <label for="psw"><b>Password</b></label>
-	    <input type="password" name="psw" id="userPassword" required>
+	    <input type="password" name="userPassword" required>
 	
 	    <button type="submit">Login</button>
 	  </div>
 	  <div class="container" style="background-color:#f1f1f1">
-	    <button type="button" class="cancelbtn">Cancel</button>
+	    <button type="button" onclick="location.href='${pageContext.request.contextPath}/home';" class="cancelbtn">Cancel</button>
 	    <span class="psw">Forgot <a href="#">password?</a></span>
 	  </div>
 	</form>

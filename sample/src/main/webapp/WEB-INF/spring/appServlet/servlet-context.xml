@@ -47,6 +47,16 @@
 	<context:component-scan base-package="com.userboard.dao" />
 	<context:component-scan base-package="com.userboard.service" />
 	
+	<beans:bean class="com.userboard.util.LoginAuthInterceptor" id="loginAuthInterceptor"/>
 	
+	
+	<interceptors>
+		<interceptor>
+			<mapping path="/mypage"/>
+			<mapping path="/allUser"/>
+			<mapping path="/view"/>
+			<beans:ref bean="loginAuthInterceptor"/>
+		</interceptor>
+	</interceptors>
 	
 </beans:beans>

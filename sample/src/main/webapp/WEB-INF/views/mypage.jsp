@@ -48,6 +48,11 @@ button:hover {
   background-color: #f44336;
 }
 
+.deletebtn {
+  padding: 14px 20px;
+  background-color: black;
+}
+
 /* Float cancel and signup buttons and add an equal width */
 .cancelbtn, .signupbtn {
   float: left;
@@ -73,33 +78,52 @@ button:hover {
   }
 }
 </style>
+<script type="text/javascript">
+function modifyUser() {
+	if(confirm("정말로 수정하시겠습니까")){
+		f.action = "${pageContext.request.contextPath}/mypage_modify?userId=${modiUser.userId}";
+		f.submit();
+	};
+}
+
+function deleteUser(userId) {
+	if(confirm("회원정보를 정말 삭제하시겠습니까")){
+		f.action = "${pageContext.request.contextPath}/remove_user?userId="+userId;
+		f.submit();
+	};
+}
+</script>
+
 <body>
 <div id="id01" class="modal">
-  <form class="modal-content" action="signup_add" method="post">
+  <form class="modal-content" method="post" name="f">
     <div class="container">
-      <h1>회원가입</h1>
+      <h1>회원정보수정</h1>
       <hr>
-      <label for="id"><b>아이디</b></label>
-      <input type="text" placeholder="아이디를 입력하세요." id="userId" name="userId" required>
+      <label for="id"><b>아이디 : ${userinfo.userId }</b></label>
+      <hr>
       
       <label for="password"><b>비밀번호</b></label>
-      <input type="password" placeholder="비밀번호를 입력하세요." id="userPassword" name="userPassword" required>
+      <input type="password" id="userPassword" name="userPassword" value="${userinfo.userPassword }">
       
       <label for="name"><b>이름</b></label>
-      <input type="text" placeholder="이름을 입력하세요." id="userName" name="userName" required>
+      <input type="text" id="userName" name="userName" value="${userinfo.userName }">
 
       <label for="email"><b>이메일</b></label>
-      <input type="text" placeholder="이메일을 입력하세요." id="userEmail" name="userEmail" required>
+      <input type="text" id="userEmail" name="userEmail" value="${userinfo.userEmail }">
 
       <label for="address"><b>주소</b></label>
-      <input type="text" placeholder="주소를 입력하세요." id="userAddress" name="userAddress" required>
+      <input type="text" id="userAddress" name="userAddress" value="${userinfo.userAddress }">
 
       <label for="phone"><b>전화번호</b></label>
-      <input type="text" placeholder="전화번호를 '-' 없이 입력하세요." id="userPhone" name="userPhone" required>
+      <input type="text" id="userPhone" name="userPhone" value="${userinfo.userPhone }">
 
       <div class="clearfix">
-        <button type="button" onclick="location.href='${pageContext.request.contextPath}/home';" class="cancelbtn">취소</button>
-        <button type="submit" class="signupbtn">가입하기</button>
+        <button type="button" onclick="location.href='${pageContext.request.contextPath}/home';" class="cancelbtn" style="width: 33.3%">취소</button>
+        <button type="button" onclick="modifyUser()" class="signupbtn" style="width: 33.3%" >정보수정</button>
+        <c:if test="${loginUser.userId!='admin' && userinfo.userId!='admin'}">
+        <button type="button" onclick="deleteUser('${userinfo.userId}')" class="deletebtn" style="width: 33.3%" >삭제하기</button>
+        </c:if>
       </div>
     </div>
   </form>
